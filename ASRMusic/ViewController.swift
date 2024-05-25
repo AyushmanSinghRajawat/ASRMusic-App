@@ -21,14 +21,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func configureSongs(){
         songs.append(Song(name: "Background Music", artistName: "Rando", albumname: "ABC", imageName: "1cover", trackName: "song1"))
-        songs.append(Song(name: "Havana", artistName: "Camilla", albumname: "Havana album", imageName: "3cover", trackName: "song2"))
-        songs.append(Song(name: "Viva La Lida", artistName: "Coldplay", albumname: "XYZ", imageName: "2cover", trackName: "song3"))
+        songs.append(Song(name: "Havana", artistName: "Camilla", albumname: "Havana album", imageName: "3cover", trackName: "song3"))
+        songs.append(Song(name: "Viva La Lida", artistName: "Coldplay", albumname: "XYZ", imageName: "2cover", trackName: "song2"))
         songs.append(Song(name: "Background Music", artistName: "Rando", albumname: "ABC", imageName: "1cover", trackName: "song1"))
-        songs.append(Song(name: "Havana", artistName: "Camilla", albumname: "Havana album", imageName: "3cover", trackName: "song2"))
-        songs.append(Song(name: "Viva La Lida", artistName: "Coldplay", albumname: "XYZ", imageName: "2cover", trackName: "song3"))
+        songs.append(Song(name: "Havana", artistName: "Camilla", albumname: "Havana album", imageName: "3cover", trackName: "song3"))
+        songs.append(Song(name: "Viva La Lida", artistName: "Coldplay", albumname: "XYZ", imageName: "2cover", trackName: "song2"))
         songs.append(Song(name: "Background Music", artistName: "Rando", albumname: "ABC", imageName: "1cover", trackName: "song1"))
-        songs.append(Song(name: "Havana", artistName: "Camilla", albumname: "Havana album", imageName: "3cover", trackName: "song2"))
-        songs.append(Song(name: "Viva La Lida", artistName: "Coldplay", albumname: "XYZ", imageName: "2cover", trackName: "song3"))
+        songs.append(Song(name: "Havana", artistName: "Camilla", albumname: "Havana album", imageName: "3cover", trackName: "song3"))
+        songs.append(Song(name: "Viva La Lida", artistName: "Coldplay", albumname: "XYZ", imageName: "2cover", trackName: "song2"))
 
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,9 +50,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let position=indexPath.row
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") else {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "player") as? PlayerViewController else {
             return
         }
+        vc.songs = songs
+        vc.position = position
         present(vc, animated: true)
     }
     
